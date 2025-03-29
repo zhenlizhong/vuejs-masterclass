@@ -22,7 +22,8 @@ export default defineConfigWithVueTs(
     skipFormatting,
     {
         rules: {
-            "@typescript-eslint/no-unused-vars": 0 // or off
+            "@typescript-eslint/no-unused-vars": 0, // or off
+            "@typescript-eslint/no-explicit-any": 0
         }
     },
 )

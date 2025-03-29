@@ -1,15 +1,34 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+
+import { supabase } from './lib/supabaseClient'
+import { onMounted, ref } from 'vue'
+const todos = ref<any[] | null>(null)
+
+async function getTodos() {
+  const { data, error } = await supabase.from('projects').select()
+  if (error) console.log(error)
+
+  console.log(data)
+  todos.value = data
+}
+
+onMounted(() => {
+  getTodos()
+})
 </script>
 
 <template>
   <header>
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
+    <ul>
+      <li v-for="todo in todos" :key="todo.id">{{ todo.name }}</li>
+    </ul>
+
     <div class="wrapper">
       <HelloWorld msg="You did it!" />
-
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
