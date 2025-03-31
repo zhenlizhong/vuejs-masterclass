@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useSomeStore } from '@/stores/supa'
 const router = useRouter()
 
 const links = [

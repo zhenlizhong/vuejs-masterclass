@@ -50,7 +50,7 @@ export default defineConfig({
             // Include auto-imported packages in Vite's `optimizeDeps` options
             // Recommend to enable
             viteOptimizeDeps: true,
-            dirs: ['src/stores']
+            dirs: ['src/stores/**', 'src/composables/**']
         }),],
     css: {
         postcss: {
