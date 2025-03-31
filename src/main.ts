@@ -9,6 +9,8 @@ import router from './router'
 
 const app = createApp(App)
 
+// app.config.errorHandler = (() => false)
+
 app.use(createPinia())
 app.use(router)
 
