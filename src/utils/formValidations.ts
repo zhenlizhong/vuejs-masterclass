@@ -7,6 +7,8 @@ export const validateEmail = (email: string) => {
     const emailRegex = /^((?!\.)[\w\-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/
     const isValidEmailFormat = emailRegex.test(trimmedEmail)
 
+    if (!trimmedEmail.includes('@')) errors.push('Email must include @ character')
+
     if (!isValidEmailFormat) errors.push('Not a valid email format')
 
     return errors
