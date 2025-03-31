@@ -1,10 +1,7 @@
 <script setup lang="ts">
 import { supabase } from '@/lib/supabaseClient'
-import { h, ref } from 'vue'
 import type { Tables } from '../../../database/types'
 import type { ColumnDef } from '@tanstack/vue-table'
-import DataTable from '@/components/ui/data-table/DataTable.vue'
-import { RouterLink } from 'vue-router'
 
 const projects = ref<Tables<'projects'>[] | null>(null)
 ;(async () => {
@@ -36,9 +33,11 @@ const columns: ColumnDef<Tables<'projects'>>[] = [
 <template>
   <DataTable v-if="projects" :columns="columns" :data="projects">
     <template #cell-name="{ cell }">
-      <RouterLink :to="`/projects/${cell.row.original.slug}`">
-        {{ cell.getValue() }}
-      </RouterLink>
+      <template v-if="cell.row.original.slug">
+        <RouterLink :to="`/projects/${cell.row.original.slug}`">
+          {{ cell.getValue() }}
+        </RouterLink>
+      </template>
     </template>
   </DataTable>
 </template>
