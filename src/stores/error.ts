@@ -21,7 +21,7 @@ export const useErrorStore = defineStore('error-store', () => {
         }
 
         activeError.value = error
-        // activeError.value.statusCode = customCode || 500
+        activeError.value.statusCode = customCode || 500
     }
 
     const clearError = () => {
@@ -36,3 +36,7 @@ export const useErrorStore = defineStore('error-store', () => {
         clearError
     }
 })
+
+if (import.meta.hot) {
+    import.meta.hot.accept(acceptHMRUpdate(useErrorStore, import.meta.hot))
+}
