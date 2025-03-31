@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useSomeStore } from '@/stores/supa'
+const router = useRouter()
 
 const links = [
   {
@@ -40,7 +41,9 @@ const accountLinks = [
 const executeAction = async (linkTitle: string) => {
   if (linkTitle === 'Sign Out') {
     const { logout } = await import('@/utils/supaAuth')
-    await logout()
+    const isLoggedOut = await logout()
+
+    if (isLoggedOut) router.push('/login')
   }
 }
 </script>
